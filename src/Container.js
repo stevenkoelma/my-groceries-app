@@ -6,24 +6,45 @@ class Container extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      newGroceryItem: "",
       groceryItems: [
         { id: 1, title: "Appels" },
         { id: 2, title: "Coca-Cola" },
         { id: 3, title: "Rivella" },
       ],
-      shoppingListItems: [
-        { id: 1, title: "Chips" },
-        { id: 2, title: "Chocolade Milka" },
-      ],
+      shoppingListItems: [],
     };
 
     this.handleClickGroceryItem = this.handleClickGroceryItem.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
-  handleClickGroceryItem = (event) => {
-    /* const clickedItem = event.target.getAttribute("value");
-    const currentShoppinglist = this.state.shoppingListItems; */
+  handleClickGroceryItem = (item) => {
+    this.setState((prevState) => {
+      const copyShoppingListItems = [...prevState.shoppingListItems];
+      const copyItem = { ...item };
+      const currentShoppingList = copyShoppingListItems.concat(copyItem);
+
+      const newState = {
+        ...prevState,
+        shoppingListItems: currentShoppingList,
+      };
+
+      return newState;
+    });
   };
+
+  emptyCart = () => {
+    this.setState({ shoppingListItems: [] });
+  };
+
+  handleSubmit(event) {
+    event.preventDefault()
+    console.log("A name was submitted: " + event.state.newGroceryItem)
+    
+    }
+    
+  
 
   render() {
     return (
@@ -32,10 +53,14 @@ class Container extends React.Component {
         <GroceryList
           items={this.state.groceryItems}
           onClick={this.handleClickGroceryItem}
+          onSubmit={this.handleSubmit}
         />
 
         <h1>Winkelwagen</h1>
-        <ShoppingCart items={this.state.shoppingListItems} />
+        <ShoppingCart
+          items={this.state.shoppingListItems}
+          emptyCart={this.emptyCart}
+        />
       </div>
     );
   }
