@@ -6,7 +6,7 @@ class List extends React.Component {
     const listItems = this.props.items.items.map((item) => (
       <ListItem
         key={item.id}
-        value={item.title}
+        item={item}
         onClick={this.props.items.onClick}
       />
     ));

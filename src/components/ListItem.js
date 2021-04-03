@@ -1,14 +1,15 @@
 import React from "react";
 
 function ListItem(props) {
-  return (
+    return (
     <li
       className="list-item"
-      key={props.id}
-      value={props.value}
-      onClick={props.onClick}
+      key={props.item.id}
+      onClick={() => {
+        props.onClick(props.item);
+      }}
     >
-      {props.value}
+      {props.item.title}
     </li>
   );
 }

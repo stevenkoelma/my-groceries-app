@@ -1,10 +1,19 @@
 import React from "react";
 import List from "./List";
 
-function ShoppingCart(props) {
-  console.log(props)
-  return <List items={props} />;
-}
+const ShoppingCart = (props) => {
+  return (
+    <div>
+      <button
+        onClick={() => {
+          props.emptyCart();
+        }}
+      >
+        Leeg winkelmand
+      </button>
+      <List items={props} />
+    </div>
+  );
+};
 
 export default ShoppingCart;
-
