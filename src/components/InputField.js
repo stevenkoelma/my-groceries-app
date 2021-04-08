@@ -1,10 +1,11 @@
 import React from "react";
 
 const InputField = (props) => {
+  
   return (
     <form
       onSubmit={(event) => {
-        props.handleSubmit(event);
+        props.onSubmit(event);
       }}
     >
       <input

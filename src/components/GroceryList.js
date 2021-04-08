@@ -3,8 +3,7 @@ import List from "./List";
 import InputField from "./InputField";
 
 function GroceryList(props) {
-  console.log(props)
-  return (
+ return (
     <div>
       <InputField onSubmit={props.onSubmit}/>
       <List items={props} onClick={props.onClick} />;

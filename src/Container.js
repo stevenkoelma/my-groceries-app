@@ -1,5 +1,6 @@
 import React from "react";
 import GroceryList from "./components/GroceryList";
+
 import ShoppingCart from "./components/ShoppingCart";
 
 class Container extends React.Component {
@@ -39,12 +40,30 @@ class Container extends React.Component {
   };
 
   handleSubmit(event) {
-    event.preventDefault()
-    console.log("A name was submitted: " + event.state.newGroceryItem)
-    
-    }
-    
-  
+    event.preventDefault();
+    this.setState((prevState) => {
+      let value = event.target[0].value;
+      const currentGroceryList = [...prevState.groceryItems];
+      const newGroceryItem = {
+        id: this.state.groceryItems.length + 1,
+        title: value,
+      };
+
+      if (value === "") {
+        alert("Voer een boodschap in");
+      } else {
+        const newGrocerylist = currentGroceryList.concat(newGroceryItem);
+        
+
+        const newState = {
+          ...prevState,
+          groceryItems: newGrocerylist,
+        };
+
+        return newState;
+      }
+    });
+  }
 
   render() {
     return (
