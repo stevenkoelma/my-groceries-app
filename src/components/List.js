@@ -8,6 +8,7 @@ class List extends React.Component {
         key={item.id}
         item={item}
         onClick={this.props.items.onClick}
+        readonly={this.props.readonly}
       />
     ));
 

@@ -1,7 +1,7 @@
 import React from "react";
 
 function ListItem(props) {
-    return (
+  return (
     <li
       className="list-item"
       key={props.item.id}
@@ -9,7 +9,8 @@ function ListItem(props) {
         props.onClick(props.item);
       }}
     >
-      {props.item.title}
+      <span>{props.item.title}</span>
+      <span>{props.readonly ? ` Aantal: ${props.item.amount}` : ""}</span>
     </li>
   );
 }
