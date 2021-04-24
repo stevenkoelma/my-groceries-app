@@ -4,13 +4,16 @@ import List from "./List";
 const ShoppingCart = (props) => {
   return (
     <div>
-      <button
-        onClick={() => {
-          props.emptyCart();
-        }}
-      >
-        Leeg winkelmand
-      </button>
+      <div className="header">
+        <h1>Winkelwagen</h1>
+        <button
+          onClick={() => {
+            props.emptyCart();
+          }}
+        >
+          Leeg winkelmand
+        </button>
+      </div>
       <List readonly={true} items={props} />
     </div>
   );

@@ -2,6 +2,7 @@ import React from "react";
 
 const InputField = (props) => {
   return (
+    <div className="inputfield"> <h1>Boodschappenlijst</h1>
     <form onSubmit={props.onSubmit}>
       <input
         name="newGroceryItem"
@@ -12,6 +13,7 @@ const InputField = (props) => {
       />
       <button type="submit">Voeg toe</button>
     </form>
+    </div>
   );
 };
 

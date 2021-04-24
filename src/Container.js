@@ -23,25 +23,24 @@ class Container extends React.Component {
     this.addAmountToItem = this.addAmountToItem.bind(this);
   }
 
-  addAmountToItem = (itemTitle) => {
-    const shoppingList = [...this.state.shoppingListItems];
-    const newShoppingList = shoppingList.map((shoppingItem) => {
-      if (shoppingItem.title === itemTitle.title) {
+  addAmountToItem = (newShoppingListItem, copyShoppingListItems) => {
+      const newShoppingListWithAmount = copyShoppingListItems.map((shoppingItem) => {
+      if (shoppingItem.title === newShoppingListItem.title) {
         shoppingItem.amount++;
       }
       return shoppingItem;
     });
-    this.setState({ shoppingListItems: newShoppingList });
+    return newShoppingListWithAmount;
   };
 
   handleClickGroceryItem = (item) => {
     this.setState((prevState) => {
       const copyShoppingListItems = [...prevState.shoppingListItems];
       const newShoppingListItem = { ...item };
-      const itemExists = copyShoppingListItems.some(
+      const doesItemExists = copyShoppingListItems.some(
         (item) => newShoppingListItem.title === item.title
       );
-      if (!itemExists) {
+      if (!doesItemExists) {
         newShoppingListItem.amount = 1;
         const currentShoppingList = copyShoppingListItems.concat(
           newShoppingListItem
@@ -54,7 +53,7 @@ class Container extends React.Component {
 
         return newState;
       } else {
-        return this.addAmountToItem(newShoppingListItem);
+        return this.addAmountToItem(newShoppingListItem, copyShoppingListItems);
       }
     });
   };
@@ -93,21 +92,28 @@ class Container extends React.Component {
 
   render() {
     return (
-      <div>
-        <h1>Boodschappenlijst</h1>
-        <GroceryList
-          items={this.state.groceryItems}
-          onClick={this.handleClickGroceryItem}
-          onSubmit={this.handleSubmit}
-          handleChange={this.handleChange}
-          inputValue={this.state.newGroceryItem}
-        />
-
-        <h1>Winkelwagen</h1>
-        <ShoppingCart
-          items={this.state.shoppingListItems}
-          emptyCart={this.emptyCart}
-        />
+      <div className="container">
+        <div className="row">
+          <div className="column">
+            <div className="grocerylist">
+              <GroceryList
+                items={this.state.groceryItems}
+                onClick={this.handleClickGroceryItem}
+                onSubmit={this.handleSubmit}
+                handleChange={this.handleChange}
+                inputValue={this.state.newGroceryItem}
+              />
+            </div>
+          </div>
+          <div className="column">
+            <div className="shoppingcart">
+              <ShoppingCart
+                items={this.state.shoppingListItems}
+                emptyCart={this.emptyCart}
+              />
+            </div>
+          </div>
+        </div>
       </div>
     );
   }

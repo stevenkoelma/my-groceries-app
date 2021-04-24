@@ -1,0 +1,43 @@
+body .row {
+  display: flex;
+}
+body .column {
+  flex: 50%;
+  margin: 5px;
+}
+body ul {
+  padding-left: 0;
+}
+body h1 {
+  font-family: Arial, sans-serif;
+  padding: 5px;
+}
+body li {
+  display: flex;
+  justify-content: space-between;
+  font: 15px Arial, sans-serif;
+  padding: 5px;
+  list-style: none;
+}
+body .inputfield {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .grocerylist li:nth-child(2n+1) {
+  background-color: #5eaaa8;
+}
+body .grocerylist li:nth-child(2n+2) {
+  background-color: #a3d2ca;
+}
+body .shoppingcart .header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+body .shoppingcart li:nth-child(2n+1) {
+  background-color: #f05945;
+}
+body .shoppingcart li:nth-child(2n+2) {
+  background-color: #f7f3e9;
+}/*# sourceMappingURL=styles.css.map */
